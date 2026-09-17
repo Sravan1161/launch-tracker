@@ -14,10 +14,14 @@ app = FastAPI(
     version="1.0.0",
 )
 
-# Allow the React dev server to call this API during local development.
+# Allow the React dev server and deployed frontend to call this API.
+app.add_middleware(
+    CORSMiddleware,
     allow_origins=["http://localhost:3000", "https://frontend-mu-roan-13.vercel.app"],
-
-app.include_router(projects.router)
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 @app.get("/")
