@@ -20,9 +20,10 @@ app.add_middleware(
     allow_origins=["http://localhost:3000", "https://frontend-mu-roan-13.vercel.app"],
     allow_credentials=True,
     allow_methods=["*"],
-    allow_headers=["*"],
+        allow_headers=["*"],
 )
 
+app.include_router(projects.router)
 
 @app.get("/")
 def root():
